@@ -26,6 +26,7 @@ namespace diamonds
             InitializeComponent();
             i = 5;
             
+            
         }
     }
 }
