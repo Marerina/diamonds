@@ -22,7 +22,7 @@ namespace diamonds
         public string name;
     }
     public class Diamond
-    {
+    {   
         public double carat;
         public Cut cut;
         public Color color;
