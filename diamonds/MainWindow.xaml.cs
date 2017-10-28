@@ -20,9 +20,12 @@ namespace diamonds
     /// </summary>
     public partial class MainWindow : Window
     {
+        int i = 0;
         public MainWindow()
         {
             InitializeComponent();
+            i = 5;
+            
         }
     }
 }
