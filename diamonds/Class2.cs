@@ -9,16 +9,19 @@ namespace diamonds
 {
     public class Class2
     {
-            public void FileLoader(string path)
-            {
-            var list = new List<string[]>();
-            var lines = File.ReadAllLines(path);
-            foreach (var line in lines)
-            {
-                var cells = line.Split(',');
-                list.Add(cells);
-            }
-            return list;
+        Diamond[] diamonds;
+
+        public void FileLoader(string path)
+        {
+
+        }
+        /*Cut cut;
+        Color color;
+        Clarity clarity;*/
+        void AllCut()
+        {
+            List<Cut> ct = new List<Cut>();
+            
         }
     }
 }
