@@ -7,9 +7,12 @@ using System.IO;
 
 namespace diamonds
 {
-    public class Class2
+    public class AuxiliaryDiamondClass
     {
         Diamond[] diamonds;
+        List<Cut> cuts;
+        List<Color> colors;
+        List<Clarity> clarities;
 
         public void FileLoader(string path)
         {
@@ -20,7 +23,12 @@ namespace diamonds
         Clarity clarity;*/
         void AllCut()
         {
-            List<Cut> ct = new List<Cut>();
+            foreach(var d in diamonds)
+            {
+                if (cuts.IndexOf(d.cut) < 0) cuts.Add(d.cut);
+                if (colors.IndexOf(d.color) < 0) colors.Add(d.color);
+                if (clarities.IndexOf(d.clarity) < 0) clarities.Add(d.clarity);
+            }
             
         }
     }
