@@ -48,6 +48,7 @@ namespace diamonds
                 else { Clarity ct = new Clarity(); ct.nom = clarities.Count; ct.name = diam[4]; d.clarity = ct; clarities.Add(ct); }
             }
         }
+        
         public double MaxValue()
         {
             double mxvl = diamonds[0].prise;
