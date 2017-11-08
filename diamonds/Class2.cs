@@ -18,9 +18,8 @@ namespace diamonds
             cuts = new List<Cut>();
             colors = new List<Color>();
             clarities = new List<Clarity>();
-
         }
-        
+
         public void FileLoader(string path)
         {
             StreamReader sr = new StreamReader(path);
@@ -28,7 +27,7 @@ namespace diamonds
             diamonds = new List<Diamond>();
             while (!sr.EndOfStream)
             {
-                s =  sr.ReadLine();
+                s = sr.ReadLine();
                 string[] diam = s.Split(',');
                 Diamond d = new Diamond();
                 d.carat = double.Parse(diam[1]);
@@ -49,13 +48,18 @@ namespace diamonds
                 else { Clarity ct = new Clarity(); ct.nom = clarities.Count; ct.name = diam[4]; d.clarity = ct; clarities.Add(ct); }
             }
         }
-        /*Cut cut;
-        Color color;
-        Clarity clarity;*/
+        public double MaxValue()
+        {
+            double mxvl = diamonds[0].prise;
+            for (int i = 1; i < diamonds.Count; i++)
+                if (mxvl < diamonds[i].prise) mxvl = diamonds[i].prise;
+            return mxvl;
+        }
+
         int IndexCut(string s)
         {
             int i = -1;
-            foreach(var c in cuts)
+            foreach (var c in cuts)
             {
                 if (c.name == s) { i = c.nom; break; }
             }
@@ -70,6 +74,7 @@ namespace diamonds
             }
             return i;
         }
+    
         int IndexColor(string s)
         {
             int i = -1;
