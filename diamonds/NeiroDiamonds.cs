@@ -8,16 +8,42 @@ namespace diamonds
 {
     class NeiroDiamonds
     {
+        Random r;
         // Веса между первым и скрытым слоем
-        double[,] W1;
+        static double[,] W1;
         // Веса между скрытым и выходным слоем
-        double[,] W2;
+        static double[,] W2;
         // Вектор входных значений
         double[] x;
-        // Вектор решений
+        // Вектор значений на скрытом слое
         double[] y;
+        // Вектор выходных значений
+        double[] z;
+        // Вектор решений
+        double[] yx;
         // Скорость обучения
         double d;
+        // Конструктор (X - Вектор входных значений, Yx - Вектор решений, YLen - Количество нейронов на скрытом слое, ZLen - Количество нейронов на выходном слое)
+        public NeiroDiamonds(double[] X, double [] Yx, int YLen, int ZLen)
+        {
+            y = new double[YLen];
+            z = new double[ZLen];
+            NewNeiron(X, Yx);
+            W1 = new double[x.Length, YLen];
+            W2 = new double[YLen, ZLen];
+            r = new Random();
+            for (int i = 0; i < x.Length; i++)
+                for (int j = 0; j < YLen; j++)
+                    W1[i, j] = r.NextDouble();
+            for (int i = 0; i < YLen; i++)
+                for (int j = 0; j < ZLen; j++)
+                    W2[i, j] = r.NextDouble();
+        }
+        public void NewNeiron(double[] X, double[] Yx)
+        {
+            X.CopyTo(x, 0);
+            Yx.CopyTo(yx, 0);
+        }
         // Функция активации
         static public double Fa(double x){return 1.0 / (1.0 + Math.Exp(x));}
         // Производная функции активации
@@ -50,5 +76,6 @@ namespace diamonds
             for (int i = 0; i < z.Length; i++) Z += z[i]; 
             return Z / z.Length;
         }
+        //static public void ReversePass()
     }
 }
