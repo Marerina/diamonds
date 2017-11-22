@@ -9,66 +9,90 @@ namespace diamonds
     class NeiroDiamonds
     {
         Random r;
-        // Веса между первым и скрытым слоем
-        static double[,] W1;
-        // Веса между скрытым и выходным слоем
-        static double[,] W2;
-        // Вектор входных значений
-        double[] x;
-        // Вектор значений на скрытом слое
-        double[] y;
-        // Вектор выходных значений
-        double[] z;
-        // Вектор решений
-        double[] yx;
         // Скорость обучения
-        double d;
+        static decimal n;
+        // Веса между первым и скрытым слоем
+        static decimal[,] W1;
+        // Веса между скрытым и выходным слоем
+        static decimal[,] W2;
+        // Сумма весов между первым и скрытым слоем
+        static decimal[,] nW1;
+        // Сумма весов между скрытым и выходным слоем
+        static decimal[,] nW2;
+        // Количество обратных проходов
+        static int count;
+        // Вектор входных значений
+        public decimal[] x;
+        // Вектор значений на скрытом слое
+        decimal[] y;
+        // Вектор выходных значений
+        decimal[] z;
+        // Вектор решений
+        decimal[] yx;
+        // Скорость обучения
+        decimal d;
         // Конструктор (X - Вектор входных значений, Yx - Вектор решений, YLen - Количество нейронов на скрытом слое, ZLen - Количество нейронов на выходном слое)
-        public NeiroDiamonds(double[] X, double [] Yx, int YLen, int ZLen)
+        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen)
         {
-            y = new double[YLen];
-            z = new double[ZLen];
+            count = 0;
+            y = new decimal[YLen];
+            z = new decimal[ZLen];
             NewNeiron(X, Yx);
-            W1 = new double[x.Length, YLen];
-            W2 = new double[YLen, ZLen];
+            W1 = new decimal[x.Length, YLen];
+            W2 = new decimal[YLen, ZLen];
+            nW1 = new decimal[x.Length, YLen];
+            nW2 = new decimal[YLen, ZLen];
             r = new Random();
             for (int i = 0; i < x.Length; i++)
                 for (int j = 0; j < YLen; j++)
-                    W1[i, j] = r.NextDouble();
+                {
+                    W1[i, j] = (decimal)r.NextDouble();
+                    nW1[i, j] = 0;
+                }
             for (int i = 0; i < YLen; i++)
                 for (int j = 0; j < ZLen; j++)
-                    W2[i, j] = r.NextDouble();
+                {
+                    W2[i, j] = (decimal)r.NextDouble();
+                    nW2[i, j] = 0;
+                }
         }
-        public void NewNeiron(double[] X, double[] Yx)
+        public void NewNeiron(decimal[] X, decimal[] Yx)
         {
             X.CopyTo(x, 0);
             Yx.CopyTo(yx, 0);
         }
         // Функция активации
-        static public double Fa(double x){return 1.0 / (1.0 + Math.Exp(x));}
+        static public decimal Fa(decimal x){return (decimal)(1.0 / (1.0 + Math.Exp((double)x)));}
         // Производная функции активации
-        static public double dFa(double x) { return Fa(x) * (1 - Fa(x)); }
+        static public decimal dFa(decimal x) { return Fa(x) * (1 - Fa(x)); }
         // Функция квадратичной ошибки (Out - получившееся значение ф-и, Y - точное значение ф-и)
-        static public double E(double Out, double Y) { return 0.5 * (Out - Y) * (Out - Y); }
+        static public decimal E(decimal Out, decimal Y) { return (Out - Y) / 2 * (Out - Y); }
         // Производная функции квадратичной ошибки
-        static public double dE(double Out, double Y) { return Out - Y; }
+        static public decimal dE(decimal Out, decimal Y) { return Out - Y; }
         // Функция - сумматор (х - массив значений, W - массив весов, j - номер текущего столбца весов)
-        static public double Sum(double[] x, double[,] W, int j)
+        static public decimal Sum(decimal[] x, decimal[,] W, int j)
         {
-            double sum = 0;
+            decimal sum = 0;
             for (int i = 0; i < x.Length; i++)
                 sum += x[i] * W[i, j];
             return sum;
         }
         // Выходное значение (х - массив значений, W - массив весов, j - номер текущего столбца весов)
-        static public double Out(double[] x, double[,] W, int j){ return Fa(Sum(x, W, j)); }
+        static public decimal Out(decimal[] x, decimal[,] W, int j){ return Fa(Sum(x, W, j)); }
+        static public decimal dOut(decimal[] x, decimal[,] W, int j)
+        {
+            decimal f = Fa(Sum(x, W, j));
+            return f * (1 - f);
+        }
+        // Погрешность dE/dWij
+        static public decimal dEdW(decimal Out, decimal Y, decimal[] x, decimal[,] W, int j) { return dE(Out, Y) * dOut(x, W, j) * Out; }
         // Прямой проход
-        static public double StraightPass(double[] x, double[,] W1, double[,] W2)
+        static public decimal StraightPass(decimal[] x, decimal[,] W1, decimal[,] W2)
         {
             // Результат
-            double Z = 0;
-            double [] z = new double[W2.GetLength(1)]; ;
-            double[] y = new double[W1.GetLength(1)];
+            decimal Z = 0;
+            decimal[] z = new decimal[W2.GetLength(1)]; ;
+            decimal[] y = new decimal[W1.GetLength(1)];
             // Проход от x -> y
             for (int j = 0; j < y.Length; j++) { y[j] = Out(x, W1, j); }
             // Проход от y -> z
@@ -76,6 +100,27 @@ namespace diamonds
             for (int i = 0; i < z.Length; i++) Z += z[i]; 
             return Z / z.Length;
         }
-        //static public void ReversePass()
+        // Обратный проход
+        static public void ReversePass(decimal Out, decimal Y, decimal[] x, decimal[,] W1, decimal[,] W2)
+        {
+            count++;
+            for (int i = 0; i < nW2.GetLength(0); i++)
+                for (int j = 0; j < nW2.GetLength(0); j++)
+                    nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
+            for (int i = 0; i < nW1.GetLength(0); i++)
+                for (int j = 0; j < nW1.GetLength(0); j++)
+                    nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
+        }
+        // Среднее по W1 и W2
+        static public void Medium()
+        {
+            for (int i = 0; i < nW2.GetLength(0); i++)
+                for (int j = 0; j < nW2.GetLength(0); j++)
+                    nW2[i, j] /= count;
+            for (int i = 0; i < nW1.GetLength(0); i++)
+                for (int j = 0; j < nW1.GetLength(0); j++)
+                    nW1[i, j] /= count;
+        }
+
     }
 }
