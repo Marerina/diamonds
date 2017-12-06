@@ -13,6 +13,7 @@ namespace diamonds
         List<Cut> cuts;
         List<Color> colors;
         List<Clarity> clarities;
+        decimal MaxNorm;
         public AuxiliaryDiamondClass()
         {
             cuts = new List<Cut>();
@@ -47,6 +48,7 @@ namespace diamonds
                 if (i > 0) { Clarity ct = new Clarity(); ct.nom = i; ct.name = diam[4]; d.clarity = ct; }
                 else { Clarity ct = new Clarity(); ct.nom = clarities.Count; ct.name = diam[4]; d.clarity = ct; clarities.Add(ct); }
             }
+            MaxNorm = (decimal)MaxValue();
         }
         
         public double MaxValue()
@@ -84,6 +86,57 @@ namespace diamonds
                 if (c.name == s) { i = c.nom; break; }
             }
             return i;
+        }
+        // вектор х с номером ind
+        public decimal [] CreateX(int ind)
+        {
+            int n = cuts.Count + clarities.Count + colors.Count;
+            decimal[] x = new decimal[6 + n];
+            int i = 0;
+            x[i] = (decimal)diamonds[ind].carat; i++;
+            int tmp = i + cuts.Count;
+            for (int j = i; j < tmp; j++)
+                x[j] = 0;
+            x[diamonds[ind].cut.nom] = 1;
+            i = tmp;
+            tmp = i + colors.Count;
+            for (int j = i; j < tmp; j++)
+                x[j] = 0;
+            x[diamonds[ind].color.nom] = 1;
+            i = tmp;
+            tmp = i + clarities.Count;
+            for (int j = i; j < tmp; j++)
+                x[j] = 0;
+            x[diamonds[ind].clarity.nom] = 1;
+            i = tmp;
+            x[i] = (decimal)diamonds[ind].depth; i++;
+            x[i] = (decimal)diamonds[ind].table; i++;
+            x[i] = (decimal)diamonds[ind].x; i++;
+            x[i] = (decimal)diamonds[ind].y; i++;
+            x[i] = (decimal)diamonds[ind].z; i++;
+            return x;
+        }
+        // Цена номера ind
+        public decimal[] CreateY(int ind)
+        {           
+            decimal[] y = new decimal[1];
+            y[0] = (decimal)diamonds[ind].prise;
+            return y;
+        }
+        // Запуск нейросети
+        // Индекс начала и конца кусочка выборки (не включая верхнюю границу)
+        // Count1 - нейронов на скрытом слое, Count2 - нейронов на выходном слое
+        // isRandom - рандомно ли берутся веса
+        public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom)
+        {
+            for (int i = iStart; i <= iFinish; i++)
+            {
+                decimal[] x = CreateX(i);
+                decimal[] y = CreateY(i);
+                NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom);
+                decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+            }
         }
     }
 }

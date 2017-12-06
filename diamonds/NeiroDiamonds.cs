@@ -12,9 +12,9 @@ namespace diamonds
         // Скорость обучения
         static decimal n;
         // Веса между первым и скрытым слоем
-        static decimal[,] W1;
+        static public decimal[,] W1;
         // Веса между скрытым и выходным слоем
-        static decimal[,] W2;
+        static public decimal[,] W2;
         // Сумма весов между первым и скрытым слоем
         static decimal[,] nW1;
         // Сумма весов между скрытым и выходным слоем
@@ -31,36 +31,81 @@ namespace diamonds
         decimal[] yx;
         // Скорость обучения
         decimal d;
-        // Конструктор (X - Вектор входных значений, Yx - Вектор решений, YLen - Количество нейронов на скрытом слое, ZLen - Количество нейронов на выходном слое)
-        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen)
+        // Нормировка
+        int Norm = 1;
+
+        /*Конструктор (isRandom - Флаг (берем рандомные веса или из усредненной суммы), 
+         * Max - максимальное значение для нормировки, 
+         * X - Вектор входных значений, 
+         * Yx - Вектор решений, 
+         * YLen - Количество нейронов на скрытом слое, 
+         * ZLen - Количество нейронов на выходном слое)
+         */
+        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen, decimal Max, bool isRandom)
         {
             count = 0;
             y = new decimal[YLen];
             z = new decimal[ZLen];
-            NewNeiron(X, Yx);
+            Weight(YLen, ZLen, isRandom);
+            //Нормировка
+            while ((Norm - Max) < 0)
+                Norm *= 10;
+            
+            NewNeiron(X, Yx, Norm);
+            
+        }
+        // Заполнение массивов весов 
+        void Weight(int YLen, int ZLen, bool IsRandom)
+        {
             W1 = new decimal[x.Length, YLen];
             W2 = new decimal[YLen, ZLen];
             nW1 = new decimal[x.Length, YLen];
             nW2 = new decimal[YLen, ZLen];
-            r = new Random();
-            for (int i = 0; i < x.Length; i++)
-                for (int j = 0; j < YLen; j++)
-                {
-                    W1[i, j] = (decimal)r.NextDouble();
-                    nW1[i, j] = 0;
-                }
-            for (int i = 0; i < YLen; i++)
-                for (int j = 0; j < ZLen; j++)
-                {
-                    W2[i, j] = (decimal)r.NextDouble();
-                    nW2[i, j] = 0;
-                }
+            if (IsRandom)
+            {
+                r = new Random();
+                for (int i = 0; i < x.Length; i++)
+                    for (int j = 0; j < YLen; j++)
+                    {
+                        W1[i, j] = (decimal)r.NextDouble();
+                        nW1[i, j] = 0;
+                    }
+                for (int i = 0; i < YLen; i++)
+                    for (int j = 0; j < ZLen; j++)
+                    {
+                        W2[i, j] = (decimal)r.NextDouble();
+                        nW2[i, j] = 0;
+                    }
+            }
+            else
+            {
+                nW1.CopyTo(W1, 0);
+                nW2.CopyTo(W2, 0);
+                for (int i = 0; i < x.Length; i++)
+                    for (int j = 0; j < YLen; j++)
+                    {
+                        nW1[i, j] = 0;
+                    }
+                for (int i = 0; i < YLen; i++)
+                    for (int j = 0; j < ZLen; j++)
+                    {
+                        nW2[i, j] = 0;
+                    }
+
+            }
         }
-        public void NewNeiron(decimal[] X, decimal[] Yx)
+
+        public void NewNeiron(decimal[] X, decimal[] Yx, int Max)
         {
             X.CopyTo(x, 0);
             Yx.CopyTo(yx, 0);
+            for (int i = 0; i < x.Length; i++)
+                x[i] /= Max;
+            for (int i = 0; i < yx.Length; i++)
+                yx[i] /= Max;
         }
+        // Разнормировать
+        public void aNorm() { for (int i = 0; i < yx.Length; i++) yx[i] *= Norm; }
         // Функция активации
         static public decimal Fa(decimal x){return (decimal)(1.0 / (1.0 + Math.Exp((double)x)));}
         // Производная функции активации
@@ -120,6 +165,8 @@ namespace diamonds
             for (int i = 0; i < nW1.GetLength(0); i++)
                 for (int j = 0; j < nW1.GetLength(0); j++)
                     nW1[i, j] /= count;
+            // Сбрасываем счетчик
+            count = 0;
         }
 
     }
