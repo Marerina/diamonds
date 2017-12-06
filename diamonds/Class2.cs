@@ -10,7 +10,7 @@ namespace diamonds
     public class AuxiliaryDiamondClass
     {
         List<Diamond> diamonds;
-        List<Cut> cuts;
+       public List<Cut> cuts;
         List<Color> colors;
         List<Clarity> clarities;
         decimal MaxNorm;
@@ -39,13 +39,13 @@ namespace diamonds
                 d.y = double.Parse(diam[9].Replace(".", ","));
                 d.z = double.Parse(diam[10].Replace(".", ","));
                 int i = IndexCut(diam[2]);
-                if (i > 0) { Cut ct = new Cut(); ct.nom = i; ct.name = diam[2]; d.cut = ct; }
+                if (i >= 0) { Cut ct = new Cut(); ct.nom = i; ct.name = diam[2]; d.cut = ct; }
                 else { Cut ct = new Cut(); ct.nom = cuts.Count; ct.name = diam[2]; d.cut = ct; cuts.Add(ct); }
                 i = IndexColor(diam[3]);
-                if (i > 0) { Color ct = new Color(); ct.nom = i; ct.name = diam[3]; d.color = ct; }
+                if (i >= 0) { Color ct = new Color(); ct.nom = i; ct.name = diam[3]; d.color = ct; }
                 else { Color ct = new Color(); ct.nom = colors.Count; ct.name = diam[3]; d.color = ct; colors.Add(ct); }
                 i = IndexClarity(diam[4]);
-                if (i > 0) { Clarity ct = new Clarity(); ct.nom = i; ct.name = diam[4]; d.clarity = ct; }
+                if (i >= 0) { Clarity ct = new Clarity(); ct.nom = i; ct.name = diam[4]; d.clarity = ct; }
                 else { Clarity ct = new Clarity(); ct.nom = clarities.Count; ct.name = diam[4]; d.clarity = ct; clarities.Add(ct); }
                 diamonds.Add(d);
             }

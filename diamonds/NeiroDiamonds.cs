@@ -32,7 +32,7 @@ namespace diamonds
         // Скорость обучения
         decimal d;
         // Нормировка
-        int Norm = 1;
+        static int Norm = 1;
 
         /*Конструктор (isRandom - Флаг (берем рандомные веса или из усредненной суммы), 
          * Max - максимальное значение для нормировки, 
@@ -79,6 +79,8 @@ namespace diamonds
             }
             else
             {
+                W1 = new decimal[nW1.GetLength(0), nW1.GetLength(1)];
+                W2 = new decimal[nW2.GetLength(0), nW2.GetLength(1)];
                 nW1.CopyTo(W1, 0);
                 nW2.CopyTo(W2, 0);
                 for (int i = 0; i < x.Length; i++)
@@ -97,6 +99,8 @@ namespace diamonds
 
         public void NewNeiron(decimal[] X, decimal[] Yx, int Max)
         {
+            x = new decimal[X.Length];
+            yx = new decimal[Yx.Length];
             X.CopyTo(x, 0);
             Yx.CopyTo(yx, 0);
             for (int i = 0; i < x.Length; i++)
@@ -149,21 +153,22 @@ namespace diamonds
         static public void ReversePass(decimal Out, decimal Y, decimal[] x, decimal[,] W1, decimal[,] W2)
         {
             count++;
+            Y /= Norm;
             for (int i = 0; i < nW2.GetLength(0); i++)
-                for (int j = 0; j < nW2.GetLength(0); j++)
+                for (int j = 0; j < nW2.GetLength(1); j++)
                     nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
             for (int i = 0; i < nW1.GetLength(0); i++)
-                for (int j = 0; j < nW1.GetLength(0); j++)
+                for (int j = 0; j < nW1.GetLength(1); j++)
                     nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
         }
         // Среднее по W1 и W2
         static public void Medium()
         {
             for (int i = 0; i < nW2.GetLength(0); i++)
-                for (int j = 0; j < nW2.GetLength(0); j++)
+                for (int j = 0; j < nW2.GetLength(1); j++)
                     nW2[i, j] /= count;
             for (int i = 0; i < nW1.GetLength(0); i++)
-                for (int j = 0; j < nW1.GetLength(0); j++)
+                for (int j = 0; j < nW1.GetLength(1); j++)
                     nW1[i, j] /= count;
             // Сбрасываем счетчик
             count = 0;
