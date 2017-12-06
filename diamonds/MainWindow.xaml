@@ -10,8 +10,10 @@
         <TabControl x:Name="tabControl" Height="319" Margin="0" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button" Content="Старт" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="46,76,0,0" TextWrapping="Wrap" Text="Тут будет текст" VerticalAlignment="Top" Height="140" Width="386"/>
+                    <Button x:Name="button" Content="Построить нейросеть" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="182" Click="button_Click"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,260,0,0" TextWrapping="Wrap" Text="Тут будет текст" VerticalAlignment="Top" Height="21" Width="168"/>
+                    <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="105,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                 </Grid>
             </TabItem>
             <TabItem Header="TabItem">
