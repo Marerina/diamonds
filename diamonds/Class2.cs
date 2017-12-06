@@ -31,13 +31,13 @@ namespace diamonds
                 s = sr.ReadLine();
                 string[] diam = s.Split(',');
                 Diamond d = new Diamond();
-                d.carat = double.Parse(diam[1]);
-                d.depth = double.Parse(diam[5]);
-                d.table = double.Parse(diam[6]);
-                d.prise = double.Parse(diam[7]);
-                d.x = double.Parse(diam[8]);
-                d.y = double.Parse(diam[9]);
-                d.z = double.Parse(diam[10]);
+                d.carat = double.Parse(diam[1].Replace(".",","));
+                d.depth = double.Parse(diam[5].Replace(".", ","));
+                d.table = double.Parse(diam[6].Replace(".", ","));
+                d.prise = double.Parse(diam[7].Replace(".", ","));
+                d.x = double.Parse(diam[8].Replace(".", ","));
+                d.y = double.Parse(diam[9].Replace(".", ","));
+                d.z = double.Parse(diam[10].Replace(".", ","));
                 int i = IndexCut(diam[2]);
                 if (i > 0) { Cut ct = new Cut(); ct.nom = i; ct.name = diam[2]; d.cut = ct; }
                 else { Cut ct = new Cut(); ct.nom = cuts.Count; ct.name = diam[2]; d.cut = ct; cuts.Add(ct); }
@@ -47,6 +47,7 @@ namespace diamonds
                 i = IndexClarity(diam[4]);
                 if (i > 0) { Clarity ct = new Clarity(); ct.nom = i; ct.name = diam[4]; d.clarity = ct; }
                 else { Clarity ct = new Clarity(); ct.nom = clarities.Count; ct.name = diam[4]; d.clarity = ct; clarities.Add(ct); }
+                diamonds.Add(d);
             }
             MaxNorm = (decimal)MaxValue();
         }

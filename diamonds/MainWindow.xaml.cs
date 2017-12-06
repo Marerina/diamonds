@@ -28,5 +28,13 @@ namespace diamonds
             
             
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            AuxiliaryDiamondClass hueta = new AuxiliaryDiamondClass();
+            hueta.FileLoader("../../diamonds.csv");
+            hueta.Start(0, 100, 10, 1, true);
+            textBlock.Text = "Ну типа МАГИЯ БЛЯ";
+        }
     }
 }

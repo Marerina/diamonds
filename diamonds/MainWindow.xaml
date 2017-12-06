@@ -9,7 +9,10 @@
     <Grid>
         <TabControl x:Name="tabControl" Height="319" Margin="0" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
             <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
+                <Grid Background="#FFE5E5E5">
+                    <Button x:Name="button" Content="Старт" HorizontalAlignment="Left" Margin="46,34,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="46,76,0,0" TextWrapping="Wrap" Text="Тут будет текст" VerticalAlignment="Top" Height="140" Width="386"/>
+                </Grid>
             </TabItem>
             <TabItem Header="TabItem">
                 <Grid Background="#FFE5E5E5" >

@@ -46,13 +46,13 @@ namespace diamonds
             count = 0;
             y = new decimal[YLen];
             z = new decimal[ZLen];
-            Weight(YLen, ZLen, isRandom);
+           
             //Нормировка
             while ((Norm - Max) < 0)
                 Norm *= 10;
             
             NewNeiron(X, Yx, Norm);
-            
+             Weight(YLen, ZLen, isRandom);
         }
         // Заполнение массивов весов 
         void Weight(int YLen, int ZLen, bool IsRandom)
