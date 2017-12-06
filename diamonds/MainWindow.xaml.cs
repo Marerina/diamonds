@@ -24,9 +24,7 @@ namespace diamonds
         public MainWindow()
         {
             InitializeComponent();
-            i = 5;
-            
-            
+            i = 5;           
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
