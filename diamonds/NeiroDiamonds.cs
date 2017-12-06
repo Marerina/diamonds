@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace diamonds
 {
@@ -111,7 +112,7 @@ namespace diamonds
         // Разнормировать
         public void aNorm() { for (int i = 0; i < yx.Length; i++) yx[i] *= Norm; }
         // Функция активации
-        static public decimal Fa(decimal x){return (decimal)(1.0 / (1.0 + Math.Exp((double)x)));}
+        static public decimal Fa(decimal x){return (decimal)(1.0 / (1.0 + Math.Exp(-(double)x)));}
         // Производная функции активации
         static public decimal dFa(decimal x) { return Fa(x) * (1 - Fa(x)); }
         // Функция квадратичной ошибки (Out - получившееся значение ф-и, Y - точное значение ф-и)
@@ -172,6 +173,29 @@ namespace diamonds
                     nW1[i, j] /= count;
             // Сбрасываем счетчик
             count = 0;
+        }
+
+        //Считывание весов из файла
+        static public void ReadW()
+        {
+            FileStream fStream = new FileStream("W1.txt", FileMode.Append);
+            StreamReader rH = new StreamReader(fStream);
+            
+        }
+        //Запись весов в файл
+        static public void WriteW()
+        {
+            FileStream fStream = new FileStream("W1.txt", FileMode.Append);
+            StreamWriter wH = new StreamWriter(fStream, System.Text.Encoding.Default);
+            for (int i = 0; i < W1.GetLength(0); i++)
+            {
+                for (int j = 0; j < W1.GetLength(1); j++)
+                {
+                    wH.Write(W1[i, j].ToString());
+                    wH.Write(" ");
+                }
+                wH.Write("\n\r");
+            }
         }
 
     }
