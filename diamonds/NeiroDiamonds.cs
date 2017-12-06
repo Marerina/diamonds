@@ -122,7 +122,7 @@ namespace diamonds
         static public decimal Sum(decimal[] x, decimal[,] W, int j)
         {
             decimal sum = 0;
-            for (int i = 0; i < x.Length / 2; i++)
+            for (int i = 0; i < W.GetLength(0); i++)
                 sum += x[i] * W[i, j];
             return sum;
         }
