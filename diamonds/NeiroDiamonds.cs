@@ -81,16 +81,16 @@ namespace diamonds
             {
                 W1 = new decimal[nW1.GetLength(0), nW1.GetLength(1)];
                 W2 = new decimal[nW2.GetLength(0), nW2.GetLength(1)];
-                nW1.CopyTo(W1, 0);
-                nW2.CopyTo(W2, 0);
                 for (int i = 0; i < x.Length; i++)
                     for (int j = 0; j < YLen; j++)
                     {
+                        W1[i, j] = nW1[i, j];
                         nW1[i, j] = 0;
                     }
                 for (int i = 0; i < YLen; i++)
                     for (int j = 0; j < ZLen; j++)
                     {
+                        W2[i, j] = nW2[i, j];
                         nW2[i, j] = 0;
                     }
 
@@ -122,7 +122,7 @@ namespace diamonds
         static public decimal Sum(decimal[] x, decimal[,] W, int j)
         {
             decimal sum = 0;
-            for (int i = 0; i < x.Length; i++)
+            for (int i = 0; i < x.Length / 2; i++)
                 sum += x[i] * W[i, j];
             return sum;
         }

@@ -130,10 +130,14 @@ namespace diamonds
         // isRandom - рандомно ли берутся веса
         public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom)
         {
+            if (!isRandom)
+            {
+                NeiroDiamonds.Medium();
+            }
             for (int i = iStart; i <= iFinish; i++)
             {
                 decimal[] x = CreateX(i);
-                decimal[] y = CreateY(i);
+                decimal[] y = CreateY(i);                
                 NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom);
                 decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
                 NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
