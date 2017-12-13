@@ -41,9 +41,11 @@ namespace diamonds
          * Yx - Вектор решений, 
          * YLen - Количество нейронов на скрытом слое, 
          * ZLen - Количество нейронов на выходном слое)
+         * v - скорость обучения
          */
-        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen, decimal Max, bool isRandom)
+        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen, decimal Max, bool isRandom, decimal v)
         {
+            n = v;
             count = 0;
             y = new decimal[YLen];
             z = new decimal[ZLen];
@@ -196,6 +198,21 @@ namespace diamonds
                 }
                 wH.Write("\n\r");
             }
+            wH.Close();
+            fStream.Close();
+            fStream = new FileStream("W2.txt", FileMode.Append);
+            wH = new StreamWriter(fStream, System.Text.Encoding.Default);
+            for (int i = 0; i < W2.GetLength(0); i++)
+            {
+                for (int j = 0; j < W2.GetLength(1); j++)
+                {
+                    wH.Write(W2[i, j].ToString());
+                    wH.Write(" ");
+                }
+                wH.Write("\n\r");
+            }
+            wH.Close();
+            fStream.Close();
         }
 
     }

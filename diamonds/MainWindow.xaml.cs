@@ -33,7 +33,7 @@ namespace diamonds
         {
             AuxiliaryDiamondClass hueta = new AuxiliaryDiamondClass();
             hueta.FileLoader("../../diamonds.csv");
-            hueta.Start(0, 5000, 26, 1, true);
+            hueta.Start(0, 5000, 26, 1, true, (decimal)0.5);
           //  hueta.Start(0, 1000, 26, 1, false);
             textBlock.Text = "Ну типа МАГИЯ БЛЯ";
         }
