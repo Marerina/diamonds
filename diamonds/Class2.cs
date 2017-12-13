@@ -14,11 +14,18 @@ namespace diamonds
         List<Color> colors;
         List<Clarity> clarities;
         decimal MaxNorm;
-        public AuxiliaryDiamondClass()
+        double speed;//скорость обучения
+        int func;//индекс функции скорости активации
+        int neiro;//количество нейронов на скрытом слое
+        int[] factors;//массив факторов
+        public AuxiliaryDiamondClass(int func, int neiro, int[] facts)
         {
             cuts = new List<Cut>();
             colors = new List<Color>();
             clarities = new List<Clarity>();
+            this.func = func;
+            this.neiro = neiro;
+            factors = facts;
         }
 
         public void FileLoader(string path)
@@ -91,6 +98,7 @@ namespace diamonds
         // вектор х с номером ind
         public decimal [] CreateX(int ind)
         {
+            /*убираем фактор из N, убираем подсчет этого фактора ниже. при условии отсутствия в листбоксе*/
             int n = cuts.Count + clarities.Count + colors.Count;
             decimal[] x = new decimal[6 + n];
             int i = 0;

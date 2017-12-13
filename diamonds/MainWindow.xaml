@@ -5,29 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diamonds"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="312" Width="525">
     <Grid>
-        <TabControl x:Name="tabControl" Height="319" Margin="0" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
-            <TabItem Header="TabItem">
+        <TabControl x:Name="tabControl" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
+            <TabItem Header="Рассчеты, все дела">
                 <Grid Background="#FFE5E5E5">
-                    <Button x:Name="button" Content="Построить нейросеть" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="182" Click="button_Click"/>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,260,0,0" TextWrapping="Wrap" Text="Тут будет текст" VerticalAlignment="Top" Height="21" Width="168"/>
-                    <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="105,53,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button" Content="Построить нейросеть" HorizontalAlignment="Left" Margin="197,94,0,0" VerticalAlignment="Top" Width="309" Click="button_Click"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="21" Width="157"/>
+                    <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="258,141,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <ListBox x:Name="listBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="107" Margin="10,40,0,0" VerticalAlignment="Top" Width="157"/>
+                    <Label x:Name="label3" Content="Факторы модели:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label2_Copy" Content="Скоррект. R^2:" HorizontalAlignment="Left" Margin="258,180,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="157"/>
+                    <Label x:Name="label4" Content="Функция активации:" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="label5" Content="Количество нейронов на скрытом слое:" HorizontalAlignment="Left" Margin="196,13,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="431,13,0,0" TextWrapping="Wrap" Text="26" VerticalAlignment="Top" Width="75"/>
+                    <Label x:Name="label6" Content="Скорость обучения:" HorizontalAlignment="Left" Margin="197,40,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="333,44,0,0" TextWrapping="Wrap" Text="0,5" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="TabItem">
+            <TabItem Header="Посчитать стоимость бриллианта">
                 <Grid Background="#FFE5E5E5" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="34*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
