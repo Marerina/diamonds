@@ -136,7 +136,7 @@ namespace diamonds
         // Индекс начала и конца кусочка выборки (не включая верхнюю границу)
         // Count1 - нейронов на скрытом слое, Count2 - нейронов на выходном слое
         // isRandom - рандомно ли берутся веса
-        public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom)
+        public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom, decimal v)
         {
             if (!isRandom)
             {
@@ -145,8 +145,8 @@ namespace diamonds
             for (int i = iStart; i <= iFinish; i++)
             {
                 decimal[] x = CreateX(i);
-                decimal[] y = CreateY(i);                
-                NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom);
+                decimal[] y = CreateY(i);
+                NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom, v);
                 decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
                 NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
             }
