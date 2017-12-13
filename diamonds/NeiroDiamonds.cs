@@ -35,6 +35,8 @@ namespace diamonds
         decimal d;
         // Нормировка
         static int Norm = 1;
+        // Функция активации
+        static int FuncA = 1;
 
         /*Конструктор (isRandom - Флаг (берем рандомные веса или из усредненной суммы), 
          * Max - максимальное значение для нормировки, 
@@ -43,9 +45,11 @@ namespace diamonds
          * YLen - Количество нейронов на скрытом слое, 
          * ZLen - Количество нейронов на выходном слое)
          * v - скорость обучения
+         * f - функция активации
          */
-        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen, decimal Max, bool isRandom, decimal v)
+        public NeiroDiamonds(decimal[] X, decimal[] Yx, int YLen, int ZLen, decimal Max, bool isRandom, decimal v, int f)
         {
+            FuncA = f;
             n = v;
             count = 0;
             y = new decimal[YLen];

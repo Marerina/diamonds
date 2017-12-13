@@ -37,8 +37,8 @@ namespace diamonds
             AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(comboBox.SelectedIndex,int.Parse(textBox1.Text), a);
            
             adc.FileLoader("../../diamonds.csv");
-            adc.Start(0, 0, 0, 0, true, 0);
-            adc.Start(0, 5000, 26, 1, true, decimal.Parse(textBox2.Text));
+            adc.Start(0, 0, 0, 0, true, 0, 1);
+            adc.Start(0, 5000, 26, 1, true, decimal.Parse(textBox2.Text), 1);
             textBlock.Text = "Ну типа МАГИЯ";
         }
     }
