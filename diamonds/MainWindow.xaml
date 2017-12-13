@@ -14,7 +14,7 @@
                     <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="21" Width="157"/>
                     <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="258,141,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
-                    <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="107" Margin="10,43,0,0" VerticalAlignment="Top" Width="157"/>
+                    <ListBox x:Name="listBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="107" Margin="10,40,0,0" VerticalAlignment="Top" Width="157"/>
                     <Label x:Name="label3" Content="Факторы модели:" HorizontalAlignment="Left" Margin="10,14,0,0" VerticalAlignment="Top"/>
                     <Label x:Name="label2_Copy" Content="Скоррект. R^2:" HorizontalAlignment="Left" Margin="258,180,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
@@ -30,15 +30,15 @@
             <TabItem Header="Посчитать стоимость бриллианта">
                 <Grid Background="#FFE5E5E5" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="26*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="32*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="31*"/>
+                        <RowDefinition Height="34*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>

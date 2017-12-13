@@ -20,20 +20,25 @@ namespace diamonds
     /// </summary>
     public partial class MainWindow : Window
     {
-        int i = 0;
         public MainWindow()
         {
-            InitializeComponent();
-            i = 5;           
+            InitializeComponent();         
         }
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            AuxiliaryDiamondClass hueta = new AuxiliaryDiamondClass();
-            hueta.FileLoader("../../diamonds.csv");
-            hueta.Start(0, 5000, 26, 1, true);
-          //  hueta.Start(0, 1000, 26, 1, false);
-            textBlock.Text = "Ну типа МАГИЯ БЛЯ";
+            int[] a = new int[listBox.SelectedItems.Count];
+            int i = 0;
+            foreach(var v in listBox.SelectedItems)
+            {
+                a[i] = listBox.Items.IndexOf(v);
+                i++; 
+            }
+            AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(comboBox.SelectedIndex,int.Parse(textBox1.Text), a);
+           
+            adc.FileLoader("../../diamonds.csv");
+            adc.Start(0, 5000, 26, 1, true);
+            textBlock.Text = "Ну типа МАГИЯ";
         }
     }
 }
