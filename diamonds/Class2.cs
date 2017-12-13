@@ -10,21 +10,19 @@ namespace diamonds
     public class AuxiliaryDiamondClass
     {
         List<Diamond> diamonds;
-       public List<Cut> cuts;
+        public List<Cut> cuts;
         List<Color> colors;
         List<Clarity> clarities;
         decimal MaxNorm;
         double speed;//скорость обучения
         int func;//индекс функции скорости активации
-        int neiro;//количество нейронов на скрытом слое
         int[] factors;//массив факторов
-        public AuxiliaryDiamondClass(int func, int neiro, int[] facts)
+        public AuxiliaryDiamondClass(int func, int[] facts)
         {
             cuts = new List<Cut>();
             colors = new List<Color>();
             clarities = new List<Clarity>();
             this.func = func;
-            this.neiro = neiro;
             factors = facts;
         }
 
