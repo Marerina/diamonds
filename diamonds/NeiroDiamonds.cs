@@ -7,6 +7,7 @@ using System.IO;
 
 namespace diamonds
 {
+    [Serializable]
     class NeiroDiamonds
     {
         Random r;
