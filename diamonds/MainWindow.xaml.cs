@@ -34,11 +34,15 @@ namespace diamonds
                 a[i] = listBox.Items.IndexOf(v);
                 i++; 
             }
-            AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(comboBox.SelectedIndex, a);
-           
+            AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
             adc.FileLoader("../../diamonds.csv");
             adc.Start(0, 5000, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
             textBlock.Text = "Ну типа МАГИЯ";
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

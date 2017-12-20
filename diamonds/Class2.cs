@@ -15,15 +15,15 @@ namespace diamonds
         List<Clarity> clarities;
         decimal MaxNorm;
         double speed;//скорость обучения
-        int func;//индекс функции скорости активации
+        int func;//индекс функции  активации
         int[] factors;//массив факторов
-        public AuxiliaryDiamondClass(int func, int[] facts)
+        public AuxiliaryDiamondClass( int[] facts, int f)
         {
             cuts = new List<Cut>();
             colors = new List<Color>();
             clarities = new List<Clarity>();
-            this.func = func;
             factors = facts;
+            func = f;
         }
 
         public void FileLoader(string path)
@@ -97,30 +97,49 @@ namespace diamonds
         public decimal [] CreateX(int ind)
         {
             /*убираем фактор из N, убираем подсчет этого фактора ниже. при условии отсутствия в листбоксе*/
-            int n = cuts.Count + clarities.Count + colors.Count;
-            decimal[] x = new decimal[6 + n];
-            int i = 0;
-            x[i] = (decimal)diamonds[ind].carat; i++;
-            int tmp = i + cuts.Count;
-            for (int j = i; j < tmp; j++)
-                x[j] = 0;
-            x[diamonds[ind].cut.nom] = 1;
+            int n = 0;
+            if (Array.IndexOf(factors, 0) > 0) { n++; }
+            if (Array.IndexOf(factors, 1) > 0) { n += cuts.Count; }
+            if (Array.IndexOf(factors, 2) > 0) { n += colors.Count; }
+            if (Array.IndexOf(factors, 3) > 0) { n += clarities.Count; }
+            if (Array.IndexOf(factors, 4) > 0) { n++; }
+            if (Array.IndexOf(factors, 5) > 0) { n++; }
+            if (Array.IndexOf(factors, 6) > 0) { n++; }
+            if (Array.IndexOf(factors, 7) > 0) { n++; }
+            if (Array.IndexOf(factors, 8) > 0) { n++; }
+            //n = cuts.Count + clarities.Count + colors.Count;
+            decimal[] x = new decimal[n];
+            int i = 0; int tmp = 0;
+            if (Array.IndexOf(factors, 0) > 0) x[i] = (decimal)diamonds[ind].carat; i++;
+            if (Array.IndexOf(factors, 1) > 0)
+            {
+                tmp = i + cuts.Count;
+                for (int j = i; j < tmp; j++)
+                    x[j] = 0;
+                x[diamonds[ind].cut.nom] = 1;
+            }
+            if (Array.IndexOf(factors, 2) > 0)
+            {
+                i = tmp;
+                tmp = i + colors.Count;
+                for (int j = i; j < tmp; j++)
+                    x[j] = 0;
+                x[diamonds[ind].color.nom] = 1;
+            }
+            if (Array.IndexOf(factors, 3) > 0)
+            {
+                i = tmp;
+                tmp = i + clarities.Count;
+                for (int j = i; j < tmp; j++)
+                    x[j] = 0;
+                x[diamonds[ind].clarity.nom] = 1;
+            }
             i = tmp;
-            tmp = i + colors.Count;
-            for (int j = i; j < tmp; j++)
-                x[j] = 0;
-            x[diamonds[ind].color.nom] = 1;
-            i = tmp;
-            tmp = i + clarities.Count;
-            for (int j = i; j < tmp; j++)
-                x[j] = 0;
-            x[diamonds[ind].clarity.nom] = 1;
-            i = tmp;
-            x[i] = (decimal)diamonds[ind].depth; i++;
-            x[i] = (decimal)diamonds[ind].table; i++;
-            x[i] = (decimal)diamonds[ind].x; i++;
-            x[i] = (decimal)diamonds[ind].y; i++;
-            x[i] = (decimal)diamonds[ind].z; i++;
+            if (Array.IndexOf(factors, 4) > 0) { x[i] = (decimal)diamonds[ind].depth; i++; }
+            if (Array.IndexOf(factors, 5) > 0) { x[i] = (decimal)diamonds[ind].table; i++; }
+            if (Array.IndexOf(factors, 6) > 0) { x[i] = (decimal)diamonds[ind].x; i++; }
+            if (Array.IndexOf(factors, 7) > 0) { x[i] = (decimal)diamonds[ind].y; i++; }
+            if (Array.IndexOf(factors, 8) > 0) { x[i] = (decimal)diamonds[ind].z; i++; }
             return x;
         }
         // Цена номера ind
@@ -135,7 +154,7 @@ namespace diamonds
         // Count1 - нейронов на скрытом слое, Count2 - нейронов на выходном слое
         // isRandom - рандомно ли берутся веса
         // f - номер функции активации
-        public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom, decimal v, int f)
+        public void Start(int iStart, int iFinish, int Count1, int Count2, bool isRandom, decimal v)
         {
             if (!isRandom)
             {
@@ -145,7 +164,7 @@ namespace diamonds
             {
                 decimal[] x = CreateX(i);
                 decimal[] y = CreateY(i);
-                NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom, v, f);
+                NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom, v, func);
                 decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
                 NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
             }

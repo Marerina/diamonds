@@ -24,7 +24,7 @@
                     <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="431,13,0,0" TextWrapping="Wrap" Text="26" VerticalAlignment="Top" Width="75"/>
                     <Label x:Name="label6" Content="Скорость обучения:" HorizontalAlignment="Left" Margin="197,40,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="333,44,0,0" TextWrapping="Wrap" Text="0,5" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153"/>
+                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Посчитать стоимость бриллианта">
