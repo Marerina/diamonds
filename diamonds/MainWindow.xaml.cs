@@ -32,7 +32,7 @@ namespace diamonds
             foreach(var v in listBox.SelectedItems)
             {
                 a[i] = listBox.Items.IndexOf(v);
-                i++; 
+                i++;
             }
             AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
             adc.FileLoader("../../diamonds.csv");

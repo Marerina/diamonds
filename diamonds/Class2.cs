@@ -108,7 +108,7 @@ namespace diamonds
             if (Array.IndexOf(factors, 7) > 0) { n++; }
             if (Array.IndexOf(factors, 8) > 0) { n++; }
             //n = cuts.Count + clarities.Count + colors.Count;
-            decimal[] x = new decimal[n];
+            decimal[] x = new decimal[n+1];
             int i = 0; int tmp = 0;
             if (Array.IndexOf(factors, 0) > 0) x[i] = (decimal)diamonds[ind].carat; i++;
             if (Array.IndexOf(factors, 1) > 0)
