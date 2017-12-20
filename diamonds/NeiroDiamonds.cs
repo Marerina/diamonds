@@ -36,7 +36,7 @@ namespace diamonds
         // Нормировка
         static int Norm = 1;
         // Функция активации
-        static int FuncA = 1;
+        static int FuncA = 0;
 
         /*Конструктор (isRandom - Флаг (берем рандомные веса или из усредненной суммы), 
          * Max - максимальное значение для нормировки, 
@@ -119,9 +119,27 @@ namespace diamonds
         // Разнормировать
         public void aNorm() { for (int i = 0; i < yx.Length; i++) yx[i] *= Norm; }
         // Функция активации
-        static public decimal Fa(decimal x){return (decimal)(1.0 / (1.0 + Math.Exp(-(double)x)));}
+        static public decimal Fa(decimal x){
+            switch (FuncA)
+            {
+                case 0: return (decimal)(1.0 / (1.0 + Math.Exp(-(double)x)));
+                case 1: return (decimal)((double)x / (1 + Math.Abs((double)x)));
+                case 2: return (decimal)((double)x / Math.Sqrt(1 + Math.Pow((double)x, 2)));
+                default: throw new Exception("функций всего три");
+            }
+            
+        }
         // Производная функции активации
-        static public decimal dFa(decimal x) { return Fa(x) * (1 - Fa(x)); }
+        static public decimal dFa(decimal x) {
+            switch (FuncA)
+            {
+                case 0:  return Fa(x) * (1 - Fa(x));
+                case 1: return (decimal)((double)x /Math.Pow((1 + Math.Abs((double)x)),2));
+                case 2: return (decimal)Math.Pow((double)Fa(x),3);
+                default: throw new Exception("функций всего три");
+            }
+           
+        }
         // Функция квадратичной ошибки (Out - получившееся значение ф-и, Y - точное значение ф-и)
         static public decimal E(decimal Out, decimal Y) { return (Out - Y) / 2 * (Out - Y); }
         // Производная функции квадратичной ошибки
