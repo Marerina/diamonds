@@ -31,8 +31,7 @@ namespace diamonds
         decimal[] z;
         // Вектор решений
         decimal[] yx;
-        // Скорость обучения
-        decimal d;
+       
         // Нормировка
         static int Norm = 1;
         // Функция активации
@@ -203,9 +202,39 @@ namespace diamonds
         //Считывание весов из файла
         static public void ReadW()
         {
-            FileStream fStream = new FileStream("W1.txt", FileMode.Append);
+            FileStream fStream = new FileStream("W1.txt", FileMode.Open);
             StreamReader rH = new StreamReader(fStream);
-            
+            string s = "";
+            int i = 0;
+            while (i < W1.GetLength(0))
+            {
+                s = rH.ReadLine();
+                if(s == "") s = rH.ReadLine();
+                string[] tmp = s.Split(' ');
+                Array.Resize(ref tmp, tmp.Length - 1);
+                for (int j = 0; j < W1.GetLength(1); j++)
+                    W1[i, j] = Convert.ToDecimal(tmp[j]);
+                i ++;
+            }
+            fStream.Close();
+            rH.Close();
+            fStream = new FileStream("W2.txt", FileMode.Open);
+            rH = new StreamReader(fStream);
+            s = "";
+            i = 0;
+            while (i < W2.GetLength(0))
+            {
+                s = rH.ReadLine();
+                if (s == "") s = rH.ReadLine();
+                string[] tmp = s.Split(' ');
+                Array.Resize(ref tmp, tmp.Length - 1);
+                for (int j = 0; j < W2.GetLength(1); j++)
+                    W2[i, j] = Convert.ToDecimal(tmp[j]);
+                i++;
+            }
+            fStream.Close();
+            rH.Close();
+
         }
         //Запись весов в файл
         static public void WriteW()
@@ -219,7 +248,7 @@ namespace diamonds
                     wH.Write(W1[i, j].ToString());
                     wH.Write(" ");
                 }
-                wH.Write("\n\r");
+                wH.Write("\n");
             }
             wH.Close();
             fStream.Close();
@@ -232,7 +261,7 @@ namespace diamonds
                     wH.Write(W2[i, j].ToString());
                     wH.Write(" ");
                 }
-                wH.Write("\n\r");
+                wH.Write("\n");
             }
             wH.Close();
             fStream.Close();

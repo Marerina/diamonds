@@ -39,7 +39,7 @@ namespace diamonds
             adc.FileLoader("../../diamonds.csv");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            adc.Start(0, 5000, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
+            adc.Start(0, 5000, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));          
             stopwatch.Stop();
             textBlock.Text = stopwatch.ElapsedTicks.ToString();
         }
