@@ -167,6 +167,12 @@ namespace diamonds
                 NeiroDiamonds n = new NeiroDiamonds(x, y, Count1, Count2, MaxNorm, isRandom, v, func);
                 decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
                 NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                while (Math.Abs(Out - y[0]/NeiroDiamonds.Norm) > (decimal)0.1)
+                {
+                    NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                    Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                }
+                
             }
         }
         public decimal Rkvadrat(int n)
