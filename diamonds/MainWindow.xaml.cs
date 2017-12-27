@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace diamonds
 {
@@ -36,8 +37,11 @@ namespace diamonds
             }
             AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
             adc.FileLoader("../../diamonds.csv");
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             adc.Start(0, 5000, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
-            textBlock.Text = "Ну типа МАГИЯ";
+            stopwatch.Stop();
+            textBlock.Text = stopwatch.ElapsedTicks.ToString();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
