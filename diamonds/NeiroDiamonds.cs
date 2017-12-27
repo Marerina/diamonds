@@ -11,7 +11,7 @@ namespace diamonds
     class NeiroDiamonds
     {
         //Точность
-        static double eps = 0.001;
+        static double eps = 0.1;
         Random r;
         // Скорость обучения
         static decimal n;
@@ -35,7 +35,7 @@ namespace diamonds
         decimal[] yx;
        
         // Нормировка
-        static int Norm = 1;
+        public static int Norm = 1;
         // Функция активации
         static int FuncA = 0;
 
@@ -181,15 +181,28 @@ namespace diamonds
         {
             count++;
             Y /= Norm;
-            while (Math.Abs(Out - Y) > (decimal)eps)
-            {
-                for (int i = 0; i < nW2.GetLength(0); i++)
-                    for (int j = 0; j < nW2.GetLength(1); j++)
-                        nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
-                for (int i = 0; i < nW1.GetLength(0); i++)
-                    for (int j = 0; j < nW1.GetLength(1); j++)
-                        nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
-            }
+
+            //for (int i = 0; i < nW2.GetLength(0); i++)
+            //    for (int j = 0; j < nW2.GetLength(1); j++)
+            //        nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
+            //for (int i = 0; i < nW1.GetLength(0); i++)
+            //    for (int j = 0; j < nW1.GetLength(1); j++)
+            //        nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
+
+
+            for (int i = 0; i < W2.GetLength(0); i++)
+                for (int j = 0; j < nW2.GetLength(1); j++)
+                {
+                    W2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
+                    W2[i, j] /= 2;
+                }
+            for (int i = 0; i < nW1.GetLength(0); i++)
+                for (int j = 0; j < W1.GetLength(1); j++)
+                {
+                    W1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
+                    W1[i, j] /= 2;
+                }
+
         }
         // Среднее по W1 и W2
         static public void Medium()
