@@ -48,7 +48,7 @@
                     <Label x:Name="label2_Copy" Content="Скоррект. R^2:" HorizontalAlignment="Left" Margin="258,180,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="10,193,0,0" VerticalAlignment="Top" Width="157">
-                        <ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">
                             <TextBlock Text="1.0 / (1.0 + Math.Exp(-x)))"/>
                         </ComboBoxItem>
                         <ComboBoxItem>

@@ -30,7 +30,7 @@ namespace diamonds
         {
             int[] a = new int[listBox.SelectedItems.Count];
             int i = 0;
-            foreach(var v in listBox.SelectedItems)
+            foreach (var v in listBox.SelectedItems)
             {
                 a[i] = listBox.Items.IndexOf(v);
                 i++;
@@ -39,10 +39,14 @@ namespace diamonds
             adc.FileLoader("../../diamonds.csv");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            adc.Start(0, 5000, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));          
+            int count = 5000;
+            adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
             stopwatch.Stop();
             textBlock.Text = stopwatch.ElapsedTicks.ToString();
+            textBox.Text = Math.Round(adc.Rkvadrat(count),3).ToString();
+            textBox_Copy.Text = Math.Round(adc.Rskorrect(count, a.Count()),3).ToString();
         }
+        
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
