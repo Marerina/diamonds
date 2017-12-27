@@ -23,9 +23,13 @@ namespace diamonds
     {
         public MainWindow()
         {
-            InitializeComponent();         
+            InitializeComponent();
+            if (adc != null)
+            {
+                comboBox1.ItemsSource = adc.cuts;
+            }
         }
-
+        AuxiliaryDiamondClass adc;
         private void button_Click(object sender, RoutedEventArgs e)
         {
             int[] a = new int[listBox.SelectedItems.Count];
@@ -35,11 +39,11 @@ namespace diamonds
                 a[i] = listBox.Items.IndexOf(v);
                 i++;
             }
-            AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
+             adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
             adc.FileLoader("../../diamonds.csv");
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            int count = 500;
+            int count = 10;
             adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
             stopwatch.Stop();
             textBlock.Text = stopwatch.ElapsedTicks.ToString();
