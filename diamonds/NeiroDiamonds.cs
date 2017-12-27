@@ -10,6 +10,8 @@ namespace diamonds
     [Serializable]
     class NeiroDiamonds
     {
+        //Точность
+        static double eps = 0.001;
         Random r;
         // Скорость обучения
         static decimal n;
@@ -179,12 +181,15 @@ namespace diamonds
         {
             count++;
             Y /= Norm;
-            for (int i = 0; i < nW2.GetLength(0); i++)
-                for (int j = 0; j < nW2.GetLength(1); j++)
-                    nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
-            for (int i = 0; i < nW1.GetLength(0); i++)
-                for (int j = 0; j < nW1.GetLength(1); j++)
-                    nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
+            while (Math.Abs(Out - Y) > (decimal)eps)
+            {
+                for (int i = 0; i < nW2.GetLength(0); i++)
+                    for (int j = 0; j < nW2.GetLength(1); j++)
+                        nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
+                for (int i = 0; i < nW1.GetLength(0); i++)
+                    for (int j = 0; j < nW1.GetLength(1); j++)
+                        nW1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
+            }
         }
         // Среднее по W1 и W2
         static public void Medium()
