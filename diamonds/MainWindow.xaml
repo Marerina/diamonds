@@ -68,26 +68,25 @@
             </TabItem>
             <TabItem Header="Посчитать стоимость бриллианта">
                 <Grid Background="#FFE5E5E5" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="26*"/>
-                        <RowDefinition Height="33*"/>
-                        <RowDefinition Height="31*"/>
-                        <RowDefinition Height="33*"/>
-                        <RowDefinition Height="32*"/>
-                        <RowDefinition Height="33*"/>
-                        <RowDefinition Height="31*"/>
-                        <RowDefinition Height="34*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Grid.RowSpan="6"/>
-                    <Grid Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="6"/>
-                    <Label x:Name="label" Content="Label" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch"/>
-                    <Label x:Name="label1" Content="Label" HorizontalAlignment="Stretch"  Grid.Row="2" VerticalAlignment="Stretch"/>
+                    <Label x:Name="label" Content="Carat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy" Content="Cut" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy1" Content="Color" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy2" Content="Clarity" HorizontalAlignment="Left" Margin="10,88,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy3" Content="Depth" HorizontalAlignment="Left" Margin="10,114,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy4" Content="Table" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy5" Content="x" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy6" Content="y" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="90"/>
+                    <Label x:Name="label_Copy7" Content="z" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="90"/>
+                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="100,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="23" Margin="100,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="23" Margin="100,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="23" Margin="100,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="100,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="100,66,0,0" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="100,92,0,0" VerticalAlignment="Top" Width="120"/>
+
                 </Grid>
             </TabItem>
         </TabControl>
