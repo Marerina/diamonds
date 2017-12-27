@@ -15,31 +15,32 @@
                     <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="258,141,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ListBox x:Name="listBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="107" Margin="10,40,0,0" VerticalAlignment="Top" Width="157">
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Carat"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Cut"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Color"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Clarity"/>
+                            
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Depth"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="Table"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="x"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="y"/>
                         </ListBoxItem>
-                        <ListBoxItem>
+                        <ListBoxItem IsSelected="True">
                             <TextBlock Text="z"/>
                         </ListBoxItem>
                     </ListBox>
