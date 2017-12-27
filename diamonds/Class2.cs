@@ -17,7 +17,7 @@ namespace diamonds
         double speed;//скорость обучения
         int func;//индекс функции  активации
         int[] factors;//массив факторов
-        public AuxiliaryDiamondClass( int[] facts, int f)
+        public AuxiliaryDiamondClass(int[] facts, int f)
         {
             cuts = new List<Cut>();
             colors = new List<Color>();
@@ -36,7 +36,7 @@ namespace diamonds
                 s = sr.ReadLine();
                 string[] diam = s.Split(',');
                 Diamond d = new Diamond();
-                d.carat = double.Parse(diam[1].Replace(".",","));
+                d.carat = double.Parse(diam[1].Replace(".", ","));
                 d.depth = double.Parse(diam[5].Replace(".", ","));
                 d.table = double.Parse(diam[6].Replace(".", ","));
                 d.prise = double.Parse(diam[7].Replace(".", ","));
@@ -56,7 +56,7 @@ namespace diamonds
             }
             MaxNorm = (decimal)MaxValue();
         }
-        
+
         public double MaxValue()
         {
             double mxvl = diamonds[0].prise;
@@ -83,7 +83,7 @@ namespace diamonds
             }
             return i;
         }
-    
+
         int IndexColor(string s)
         {
             int i = -1;
@@ -94,7 +94,7 @@ namespace diamonds
             return i;
         }
         // вектор х с номером ind
-        public decimal [] CreateX(int ind)
+        public decimal[] CreateX(int ind)
         {
             /*убираем фактор из N, убираем подсчет этого фактора ниже. при условии отсутствия в листбоксе*/
             int n = 0;
@@ -108,7 +108,7 @@ namespace diamonds
             if (Array.IndexOf(factors, 7) > 0) { n++; }
             if (Array.IndexOf(factors, 8) > 0) { n++; }
             //n = cuts.Count + clarities.Count + colors.Count;
-            decimal[] x = new decimal[n+1];
+            decimal[] x = new decimal[n + 1];
             int i = 0; int tmp = 0;
             if (Array.IndexOf(factors, 0) > 0) x[i] = (decimal)diamonds[ind].carat; i++;
             if (Array.IndexOf(factors, 1) > 0)
@@ -144,7 +144,7 @@ namespace diamonds
         }
         // Цена номера ind
         public decimal[] CreateY(int ind)
-        {           
+        {
             decimal[] y = new decimal[1];
             y[0] = (decimal)diamonds[ind].prise;
             return y;
@@ -168,6 +168,34 @@ namespace diamonds
                 decimal Out = NeiroDiamonds.StraightPass(n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
                 NeiroDiamonds.ReversePass(Out, y[0], n.x, NeiroDiamonds.W1, NeiroDiamonds.W2);
             }
+        }
+        public decimal Rkvadrat(int n)
+        {
+            decimal Sres = 0, r1 = 0, Stot = 0;
+            int count = n;
+            for (int i = 0; i < count; i++)
+            {
+                decimal[] x = CreateX(i);
+                decimal[] y = CreateY(i);
+                decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                Sres += (y[0] - Out)* (y[0]-Out);
+                r1 += y[0];
+            }
+
+            r1 = (decimal)r1 / count;
+            for (int i = 0; i < count; i++)
+            {
+                decimal[] y = CreateY(i);
+                Stot += (y[0] - r1) * (y[0] - r1);
+                
+            }
+            return 1 - Sres / Stot;
+        }
+        public decimal Rskorrect(int n, int k)
+        {
+            decimal r = Rkvadrat(n);
+            return 1 - (1 - r * r) * (n - 1) / (n - k);
+
         }
     }
 }
