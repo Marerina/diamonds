@@ -90,10 +90,10 @@
                     <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="120"  SelectedIndex="0">
 
                     </ComboBox>
-                    <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="100,66,0,0" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="100,92,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button2" Content="Посчитать стоимость бриллианта" HorizontalAlignment="Left" Margin="264,13,0,0" VerticalAlignment="Top" Width="237" Click="button2_Click"/>
-                    <Label x:Name="label1" Content="" HorizontalAlignment="Left" Margin="264,62,0,0" VerticalAlignment="Top" Width="237"/>
+                    <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="100,66,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+                    <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="100,92,0,0" VerticalAlignment="Top" Width="120" SelectedIndex="0"/>
+                    <Button x:Name="button2" IsEnabled="False" Content="Посчитать стоимость бриллианта" HorizontalAlignment="Left" Margin="264,13,0,0" VerticalAlignment="Top" Width="237" Click="button2_Click"/>
+                    <Label x:Name="label1" Content="" HorizontalAlignment="Left" Margin="264,62,0,0" VerticalAlignment="Top" Width="237" FontSize="18"/>
 
                 </Grid>
             </TabItem>
