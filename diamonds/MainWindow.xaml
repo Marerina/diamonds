@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diamonds"
         mc:Ignorable="d"
-        Title="MainWindow" Height="312" Width="525">
+        Title="Diamonds" Height="312" Width="525">
     <Grid>
         <TabControl x:Name="tabControl" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
             <TabItem Header="Рассчеты, все дела">
@@ -63,7 +63,7 @@
                     <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="431,13,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="75"/>
                     <Label x:Name="label6" Content="Скорость обучения:" HorizontalAlignment="Left" Margin="197,40,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="333,44,0,0" TextWrapping="Wrap" Text="0,5" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click"/>
+                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Посчитать стоимость бриллианта">
@@ -77,16 +77,16 @@
                     <Label x:Name="label_Copy5" Content="x" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy6" Content="y" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy7" Content="z" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="90"/>
-                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="100,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="23" Margin="100,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="23" Margin="100,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="23" Margin="100,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="100,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="100,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="23" Margin="100,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="23" Margin="100,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="23" Margin="100,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="100,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="100,66,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="100,92,0,0" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button2" Content="Посчитать стоимость бриллианта" HorizontalAlignment="Left" Margin="264,13,0,0" VerticalAlignment="Top" Width="237"/>
+                    <Button x:Name="button2" Content="Посчитать стоимость бриллианта" HorizontalAlignment="Left" Margin="264,13,0,0" VerticalAlignment="Top" Width="237" Click="button2_Click"/>
                     <Label x:Name="label1" Content="" HorizontalAlignment="Left" Margin="264,62,0,0" VerticalAlignment="Top" Width="237"/>
 
                 </Grid>
