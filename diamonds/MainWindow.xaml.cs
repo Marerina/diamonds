@@ -24,9 +24,19 @@ namespace diamonds
         public MainWindow()
         {
             InitializeComponent();
-            if (adc != null)
+            adc = new AuxiliaryDiamondClass();
+            adc.FileLoader("../../diamonds.csv");
+            foreach (var v in adc.cuts)
             {
-                comboBox1.ItemsSource = adc.cuts;
+                comboBox1.Items.Add(v.name);
+            }
+            foreach (var v in adc.colors)
+            {
+                comboBox2.Items.Add(v.name);
+            }
+            foreach (var v in adc.clarities)
+            {
+                comboBox3.Items.Add(v.name);
             }
         }
         AuxiliaryDiamondClass adc;
@@ -39,8 +49,9 @@ namespace diamonds
                 a[i] = listBox.Items.IndexOf(v);
                 i++;
             }
-             adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
-            adc.FileLoader("../../diamonds.csv");
+             
+            adc.SetF(a, comboBox.SelectedIndex);
+           
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             int count = 10;
@@ -60,6 +71,17 @@ namespace diamonds
         private void button2_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource clarityViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("clarityViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // clarityViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource cutViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("cutViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // cutViewSource.Source = [generic data source]
         }
     }
 }
