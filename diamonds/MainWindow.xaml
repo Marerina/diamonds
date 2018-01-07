@@ -11,7 +11,7 @@
             <TabItem Header="Рассчеты, все дела">
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="button" Content="Построить нейросеть" HorizontalAlignment="Left" Margin="197,94,0,0" VerticalAlignment="Top" Width="309" Click="button_Click"/>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="21" Width="157"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="///" VerticalAlignment="Top" Height="21" Width="157"/>
                     <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="258,141,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ListBox x:Name="listBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="107" Margin="10,40,0,0" VerticalAlignment="Top" Width="157">
@@ -64,6 +64,7 @@
                     <Label x:Name="label6" Content="Скорость обучения:" HorizontalAlignment="Left" Margin="197,40,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="333,44,0,0" TextWrapping="Wrap" Text="0,5" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click"/>
+                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="212,135,0,0" VerticalAlignment="Top" Width="100"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Посчитать стоимость бриллианта">

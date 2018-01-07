@@ -37,14 +37,7 @@ namespace diamonds
             }
             AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
             adc.FileLoader("../../diamonds.csv");
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            int count = 10;
-            adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
-            stopwatch.Stop();
-            textBlock.Text = stopwatch.ElapsedTicks.ToString();
-            textBox.Text = Math.Round(adc.Rkvadrat(count),3).ToString();
-            textBox_Copy.Text = Math.Round(adc.Rskorrect(count, a.Count()),3).ToString();
+         
         }
         
 

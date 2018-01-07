@@ -24,7 +24,7 @@ namespace diamonds
         // Сумма весов между скрытым и выходным слоем
         static decimal[,] nW2;
         // Количество обратных проходов
-        static int count;
+        static int count = 1;
         // Вектор входных значений
         public decimal[] x;
         // Вектор значений на скрытом слое
@@ -52,7 +52,7 @@ namespace diamonds
         {
             FuncA = f;
             n = v;
-            count = 0;
+            count = 1;
             y = new decimal[YLen];
             z = new decimal[ZLen];
            
@@ -214,7 +214,7 @@ namespace diamonds
                 for (int j = 0; j < nW1.GetLength(1); j++)
                     nW1[i, j] /= count;
             // Сбрасываем счетчик
-            count = 0;
+            count = 1;
         }
 
         //Считывание весов из файла
