@@ -11,17 +11,21 @@ namespace diamonds
     {
         List<Diamond> diamonds;
         public List<Cut> cuts;
-        List<Color> colors;
-        List<Clarity> clarities;
+        public List<Color> colors;
+        public List<Clarity> clarities;
         decimal MaxNorm;
         double speed;//скорость обучения
         int func;//индекс функции  активации
         int[] factors;//массив факторов
-        public AuxiliaryDiamondClass(int[] facts, int f)
+        public AuxiliaryDiamondClass()
         {
             cuts = new List<Cut>();
             colors = new List<Color>();
             clarities = new List<Clarity>();
+            
+        }
+        public void SetF(int[] facts, int f)
+        {
             factors = facts;
             func = f;
         }
@@ -65,7 +69,7 @@ namespace diamonds
             return mxvl;
         }
 
-        int IndexCut(string s)
+       public int IndexCut(string s)
         {
             int i = -1;
             foreach (var c in cuts)
@@ -74,7 +78,7 @@ namespace diamonds
             }
             return i;
         }
-        int IndexClarity(string s)
+       public int IndexClarity(string s)
         {
             int i = -1;
             foreach (var c in clarities)
@@ -84,7 +88,7 @@ namespace diamonds
             return i;
         }
 
-        int IndexColor(string s)
+       public int IndexColor(string s)
         {
             int i = -1;
             foreach (var c in colors)

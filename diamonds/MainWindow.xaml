@@ -5,13 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:diamonds"
         mc:Ignorable="d"
-        Title="MainWindow" Height="312" Width="525">
+        Title="Diamonds" Height="312" Width="525" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="clarityViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Clarity}, CreateList=True}"/>
+        <CollectionViewSource x:Key="cutViewSource" d:DesignSource="{d:DesignInstance {x:Type local:Cut}, CreateList=True}"/>
+    </Window.Resources>
     <Grid>
         <TabControl x:Name="tabControl" Width="517" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" >
             <TabItem Header="Рассчеты, все дела">
                 <Grid Background="#FFE5E5E5">
                     <Button x:Name="button" Content="Построить нейросеть" HorizontalAlignment="Left" Margin="197,94,0,0" VerticalAlignment="Top" Width="309" Click="button_Click"/>
-                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="///" VerticalAlignment="Top" Height="21" Width="157"/>
+                    <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="21" Width="157"/>
                     <Label x:Name="label2" Content="Значение R^2:" HorizontalAlignment="Left" Margin="258,141,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox" HorizontalAlignment="Left" IsReadOnly="True" Height="23" Margin="353,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
                     <ListBox x:Name="listBox" SelectionMode="Multiple" HorizontalAlignment="Left" Height="107" Margin="10,40,0,0" VerticalAlignment="Top" Width="157">
@@ -26,7 +30,7 @@
                         </ListBoxItem>
                         <ListBoxItem IsSelected="True">
                             <TextBlock Text="Clarity"/>
-                            
+
                         </ListBoxItem>
                         <ListBoxItem IsSelected="True">
                             <TextBlock Text="Depth"/>
@@ -63,12 +67,11 @@
                     <TextBox x:Name="textBox1" HorizontalAlignment="Left" Height="23" Margin="431,13,0,0" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="75"/>
                     <Label x:Name="label6" Content="Скорость обучения:" HorizontalAlignment="Left" Margin="197,40,0,0" VerticalAlignment="Top"/>
                     <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="333,44,0,0" TextWrapping="Wrap" Text="0,5" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click"/>
-                    <ProgressBar HorizontalAlignment="Left" Height="10" Margin="212,135,0,0" VerticalAlignment="Top" Width="100"/>
+                    <Button x:Name="button1" Content="Сохранить" HorizontalAlignment="Left" Margin="353,223,0,0" VerticalAlignment="Top" Width="153" Click="button1_Click" Visibility="Hidden"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Посчитать стоимость бриллианта">
-                <Grid Background="#FFE5E5E5" >
+                <Grid Background="#FFE5E5E5" DataContext="{StaticResource clarityViewSource}" >
                     <Label x:Name="label" Content="Carat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy" Content="Cut" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy1" Content="Color" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top" Width="90"/>
@@ -78,15 +81,19 @@
                     <Label x:Name="label_Copy5" Content="x" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy6" Content="y" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top" Width="90"/>
                     <Label x:Name="label_Copy7" Content="z" HorizontalAlignment="Left" Margin="10,217,0,0" VerticalAlignment="Top" Width="90"/>
-                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="100,118,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="23" Margin="100,142,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="23" Margin="100,167,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="23" Margin="100,192,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="100,217,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="100,13,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox4" HorizontalAlignment="Left" Height="23" Margin="100,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox5" HorizontalAlignment="Left" Height="23" Margin="100,142,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox6" HorizontalAlignment="Left" Height="23" Margin="100,167,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox7" HorizontalAlignment="Left" Height="23" Margin="100,192,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="textBox8" HorizontalAlignment="Left" Height="23" Margin="100,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="100,41,0,0" VerticalAlignment="Top" Width="120"  SelectedIndex="0">
+
+                    </ComboBox>
                     <ComboBox x:Name="comboBox2" HorizontalAlignment="Left" Margin="100,66,0,0" VerticalAlignment="Top" Width="120"/>
                     <ComboBox x:Name="comboBox3" HorizontalAlignment="Left" Margin="100,92,0,0" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="button2" Content="Посчитать стоимость бриллианта" HorizontalAlignment="Left" Margin="264,13,0,0" VerticalAlignment="Top" Width="237" Click="button2_Click"/>
+                    <Label x:Name="label1" Content="" HorizontalAlignment="Left" Margin="264,62,0,0" VerticalAlignment="Top" Width="237"/>
 
                 </Grid>
             </TabItem>

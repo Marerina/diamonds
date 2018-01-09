@@ -23,9 +23,23 @@ namespace diamonds
     {
         public MainWindow()
         {
-            InitializeComponent();         
+            InitializeComponent();
+            adc = new AuxiliaryDiamondClass();
+            adc.FileLoader("../../diamonds.csv");
+            foreach (var v in adc.cuts)
+            {
+                comboBox1.Items.Add(v.name);
+            }
+            foreach (var v in adc.colors)
+            {
+                comboBox2.Items.Add(v.name);
+            }
+            foreach (var v in adc.clarities)
+            {
+                comboBox3.Items.Add(v.name);
+            }
         }
-
+        AuxiliaryDiamondClass adc;
         private void button_Click(object sender, RoutedEventArgs e)
         {
             int[] a = new int[listBox.SelectedItems.Count];
@@ -35,15 +49,39 @@ namespace diamonds
                 a[i] = listBox.Items.IndexOf(v);
                 i++;
             }
-            AuxiliaryDiamondClass adc = new AuxiliaryDiamondClass(a, comboBox.SelectedIndex);
-            adc.FileLoader("../../diamonds.csv");
-         
+             
+            adc.SetF(a, comboBox.SelectedIndex);
+           
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            int count = 10;
+            adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
+            stopwatch.Stop();
+            textBlock.Text = stopwatch.ElapsedTicks.ToString();
+            textBox.Text = Math.Round(adc.Rkvadrat(count),3).ToString();
+            textBox_Copy.Text = Math.Round(adc.Rskorrect(count, a.Count()),3).ToString();
         }
         
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource clarityViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("clarityViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // clarityViewSource.Source = [generic data source]
+            System.Windows.Data.CollectionViewSource cutViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("cutViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // cutViewSource.Source = [generic data source]
         }
     }
 }
