@@ -187,7 +187,7 @@ namespace diamonds
             {
                 decimal[] x = CreateX(i);
                 decimal[] y = CreateY(i);
-                decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2);
+                decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2) / NeiroDiamonds.Norm;
                 Sres += (y[0] - Out)* (y[0]-Out);
                 r1 += y[0];
             }
