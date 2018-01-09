@@ -11,7 +11,7 @@ namespace diamonds
     class NeiroDiamonds
     {
         //Точность
-        static double eps = 0.1;
+        static public decimal eps = (decimal)0.1;
         Random r;
         // Скорость обучения
         static decimal n;
@@ -174,14 +174,14 @@ namespace diamonds
             // Проход от y -> z
             for (int j = 0; j < z.Length; j++) { z[j] = Out(y, W2, j); }
             for (int i = 0; i < z.Length; i++) Z += z[i]; 
-            return Z / z.Length;
+            return Z / z.Length * Norm;
         }
         // Обратный проход
         static public void ReversePass(decimal Out, decimal Y, decimal[] x, decimal[,] W1, decimal[,] W2)
         {
             count++;
             Y /= Norm;
-
+            Out /= Norm;
             //for (int i = 0; i < nW2.GetLength(0); i++)
             //    for (int j = 0; j < nW2.GetLength(1); j++)
             //        nW2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
@@ -284,6 +284,9 @@ namespace diamonds
             wH.Close();
             fStream.Close();
         }
+        static void Learn()
+        {
 
+        }
     }
 }
