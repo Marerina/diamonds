@@ -54,7 +54,7 @@ namespace diamonds
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            int count = 1000;
+            int count = 10;
             adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
             NeiroDiamonds.Medium();
             NeiroDiamonds.WriteW();

@@ -11,7 +11,7 @@ namespace diamonds
     class NeiroDiamonds
     {
         //Точность
-        static public decimal eps = (decimal)0.1;
+        static public decimal eps = (decimal)0.01;
         Random r;
         // Скорость обучения
         static decimal n;
