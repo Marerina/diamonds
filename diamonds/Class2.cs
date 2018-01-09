@@ -14,7 +14,7 @@ namespace diamonds
         public List<Color> colors;
         public List<Clarity> clarities;
         decimal MaxNorm;
-        double speed;//скорость обучения
+     //   double speed;//скорость обучения
         int func;//индекс функции  активации
         int[] factors;//массив факторов
         public AuxiliaryDiamondClass()
