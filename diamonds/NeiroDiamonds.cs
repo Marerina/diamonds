@@ -11,7 +11,7 @@ namespace diamonds
     class NeiroDiamonds
     {
         //Точность
-        static public decimal eps = (decimal)0.01;
+        static public decimal eps = (decimal)0.1;
         Random r;
         // Скорость обучения
         static decimal n;
@@ -195,27 +195,29 @@ namespace diamonds
                 {
                     W2[i, j] += W2[i, j] - n * dEdW(Out, Y, x, W2, j);
                     W2[i, j] /= 2;
+                    nW2[i, j] = W2[i, j];
                 }
             for (int i = 0; i < nW1.GetLength(0); i++)
                 for (int j = 0; j < W1.GetLength(1); j++)
                 {
                     W1[i, j] += W1[i, j] - n * dEdW(Out, Y, x, W1, j);
                     W1[i, j] /= 2;
+                    nW1[i, j] = W1[i, j];
                 }
 
         }
         // Среднее по W1 и W2
-        static public void Medium()
-        {
-            for (int i = 0; i < nW2.GetLength(0); i++)
-                for (int j = 0; j < nW2.GetLength(1); j++)
-                    nW2[i, j] /= count;
-            for (int i = 0; i < nW1.GetLength(0); i++)
-                for (int j = 0; j < nW1.GetLength(1); j++)
-                    nW1[i, j] /= count;
-            // Сбрасываем счетчик
-            count = 1;
-        }
+        //static public void Medium()
+        //{
+        //    for (int i = 0; i < nW2.GetLength(0); i++)
+        //        for (int j = 0; j < nW2.GetLength(1); j++)
+        //            nW2[i, j] /= count;
+        //    for (int i = 0; i < nW1.GetLength(0); i++)
+        //        for (int j = 0; j < nW1.GetLength(1); j++)
+        //            nW1[i, j] /= count;
+        //    // Сбрасываем счетчик
+        //    count = 1;
+        //}
 
         //Считывание весов из файла
         static public void ReadW()
@@ -263,7 +265,7 @@ namespace diamonds
             {
                 for (int j = 0; j < W1.GetLength(1); j++)
                 {
-                    wH.Write(W1[i, j].ToString());
+                    wH.Write(Math.Round(W1[i, j], 5).ToString());
                     wH.Write(" ");
                 }
                 wH.Write("\n");
@@ -276,7 +278,7 @@ namespace diamonds
             {
                 for (int j = 0; j < W2.GetLength(1); j++)
                 {
-                    wH.Write(W2[i, j].ToString());
+                    wH.Write(Math.Round(W2[i, j], 5).ToString());
                     wH.Write(" ");
                 }
                 wH.Write("\n");

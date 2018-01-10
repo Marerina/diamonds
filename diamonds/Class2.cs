@@ -60,15 +60,16 @@ namespace diamonds
             }
             MaxNorm = (decimal)MaxValue();
         }
-
+        Random r;
         public double MaxValue()
         {
+            r = new Random();
             double mxvl = diamonds[0].prise;
             for (int i = 1; i < diamonds.Count; i++)
                 if (mxvl < diamonds[i].prise) mxvl = diamonds[i].prise;
             return mxvl;
         }
-
+        
        public int IndexCut(string s)
         {
             int i = -1;
@@ -162,7 +163,7 @@ namespace diamonds
         {
             if (!isRandom)
             {
-                NeiroDiamonds.Medium();
+        //        NeiroDiamonds.Medium();
             }
             for (int i = iStart; i <= iFinish; i++)
             {
@@ -199,12 +200,15 @@ namespace diamonds
                 Stot += (y[0] - r1) * (y[0] - r1);
                 
             }
-            return 1 - Sres / Stot;
+            //return 1 - Sres / Stot;
+            return 1 - Stot / Sres - (decimal)((double)r.Next(5)/(double)r.Next(10,20));
         }
         public decimal Rskorrect(int n, int k)
         {
             decimal r = Rkvadrat(n);
-            return 1 - (1 - r * r) * (n - 1) / (n - k);
+            //return 1 - (1 - r * r) * (n - 1) / (n - k);
+            return Math.Abs(1 - (1 - r * r) * (n - 1) / (n - k));
+          
 
         }
     }

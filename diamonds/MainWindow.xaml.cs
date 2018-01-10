@@ -40,6 +40,7 @@ namespace diamonds
             }
         }
         AuxiliaryDiamondClass adc;
+        Random R;
         private void button_Click(object sender, RoutedEventArgs e)
         {
             int[] a = new int[listBox.SelectedItems.Count];
@@ -55,11 +56,15 @@ namespace diamonds
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             int count = 10;
-            adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
-            NeiroDiamonds.Medium();
+            R = new Random();
+            int tmp = R.Next(50000);
+            adc.Start(tmp, tmp + count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
+          //  NeiroDiamonds.Medium();
+       //     NeiroDiamonds.WriteW();
+         //   NeiroDiamonds.ReadW();
+          //  adc.Start(0, count, int.Parse(textBox1.Text), 1, false, decimal.Parse(textBox2.Text));
+         //   NeiroDiamonds.Medium();
             NeiroDiamonds.WriteW();
-            NeiroDiamonds.ReadW();
-            adc.Start(0, count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
             stopwatch.Stop();
             textBlock.Text = stopwatch.ElapsedTicks.ToString();
             textBox.Text = Math.Round(adc.Rkvadrat(count), 3).ToString();
@@ -111,7 +116,7 @@ namespace diamonds
 
             decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2);
             
-            label1.Content = Math.Round(Out * NeiroDiamonds.Norm,3).ToString();
+            label1.Content = Math.Round(Out,3).ToString();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
