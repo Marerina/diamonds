@@ -108,15 +108,19 @@ namespace diamonds
             x[i + indexclarity] = 1;
 
             i = tmp;
-            x[i] = decimal.Parse(textBox4.Text); i++;
-            x[i] = decimal.Parse(textBox5.Text); i++;
-            x[i] = decimal.Parse(textBox6.Text); i++;
-            x[i] = decimal.Parse(textBox7.Text); i++;
-            x[i] = decimal.Parse(textBox8.Text); i++;
+            try
+            {
+                x[i] = decimal.Parse(textBox4.Text); i++;
+                x[i] = decimal.Parse(textBox5.Text); i++;
+                x[i] = decimal.Parse(textBox6.Text); i++;
+                x[i] = decimal.Parse(textBox7.Text); i++;
+                x[i] = decimal.Parse(textBox8.Text); i++;
 
-            decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2);
-            
-            label1.Content = Math.Round(Out,3).ToString();
+                decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2) / 100 - 155;
+
+                label1.Content = Math.Round(Out, 3).ToString();
+            }
+            catch { MessageBox.Show("Данные введены некорректно"); }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
