@@ -206,7 +206,7 @@ namespace diamonds
         }
         public decimal Rskorrect(int n, int k)
         {
-            return 1 - (1 - RR * RR) * (n - 1) / (n - k);         
+            return (1 - (1 - RR * RR) * (n - 1) / (n - k));         
 
         }
     }
