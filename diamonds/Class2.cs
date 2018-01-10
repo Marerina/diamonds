@@ -180,6 +180,7 @@ namespace diamonds
                 
             }
         }
+        decimal RR = 1;
         public decimal Rkvadrat(int n)
         {
             decimal Sres = 0, r1 = 0, Stot = 0;
@@ -200,15 +201,12 @@ namespace diamonds
                 Stot += (y[0] - r1) * (y[0] - r1);
                 
             }
-            //return 1 - Sres / Stot;
-            return 1 - Stot / Sres - (decimal)((double)r.Next(5)/(double)r.Next(10,20));
+            RR = 1 - Stot / Sres - (decimal)((double)r.Next(5) / (double)r.Next(10, 20));
+            return RR;
         }
         public decimal Rskorrect(int n, int k)
         {
-            decimal r = Rkvadrat(n);
-            return 1 - (1 - r * r) * (n - 1) / (n - k);
-         //   return Math.Abs(1 - (1 - r * r) * (n - 1) / (n - k));
-          
+            return 1 - (1 - RR * RR) * (n - 1) / (n - k);         
 
         }
     }
