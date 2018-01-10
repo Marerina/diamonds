@@ -88,21 +88,7 @@ namespace diamonds
             }
             else
             {
-                W1 = new decimal[nW1.GetLength(0), nW1.GetLength(1)];
-                W2 = new decimal[nW2.GetLength(0), nW2.GetLength(1)];
-                for (int i = 0; i < x.Length; i++)
-                    for (int j = 0; j < YLen; j++)
-                    {
-                        W1[i, j] = nW1[i, j];
-                        nW1[i, j] = 0;
-                    }
-                for (int i = 0; i < YLen; i++)
-                    for (int j = 0; j < ZLen; j++)
-                    {
-                        W2[i, j] = nW2[i, j];
-                        nW2[i, j] = 0;
-                    }
-
+                ReadW("W1.csv", "W2.csv");
             }
         }
 
@@ -220,9 +206,9 @@ namespace diamonds
         //}
 
         //Считывание весов из файла
-        static public void ReadW()
+        static public void ReadW(string name1, string name2)
         {
-            FileStream fStream = new FileStream("W1.txt", FileMode.Open);
+            FileStream fStream = new FileStream(name1, FileMode.Open);
             StreamReader rH = new StreamReader(fStream);
             string s = "";
             int i = 0;
@@ -238,7 +224,7 @@ namespace diamonds
             }
             fStream.Close();
             rH.Close();
-            fStream = new FileStream("W2.txt", FileMode.Open);
+            fStream = new FileStream(name2, FileMode.Open);
             rH = new StreamReader(fStream);
             s = "";
             i = 0;
@@ -259,7 +245,8 @@ namespace diamonds
         //Запись весов в файл
         static public void WriteW()
         {
-            FileStream fStream = new FileStream("W1.txt", FileMode.Append);
+
+            FileStream fStream = new FileStream("W1.csv", FileMode.Append);
             StreamWriter wH = new StreamWriter(fStream, System.Text.Encoding.Default);
             for (int i = 0; i < W1.GetLength(0); i++)
             {
@@ -272,7 +259,7 @@ namespace diamonds
             }
             wH.Close();
             fStream.Close();
-            fStream = new FileStream("W2.txt", FileMode.Append);
+            fStream = new FileStream("W2.csv", FileMode.Append);
             wH = new StreamWriter(fStream, System.Text.Encoding.Default);
             for (int i = 0; i < W2.GetLength(0); i++)
             {

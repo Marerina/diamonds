@@ -206,8 +206,8 @@ namespace diamonds
         public decimal Rskorrect(int n, int k)
         {
             decimal r = Rkvadrat(n);
-            //return 1 - (1 - r * r) * (n - 1) / (n - k);
-            return Math.Abs(1 - (1 - r * r) * (n - 1) / (n - k));
+            return 1 - (1 - r * r) * (n - 1) / (n - k);
+         //   return Math.Abs(1 - (1 - r * r) * (n - 1) / (n - k));
           
 
         }

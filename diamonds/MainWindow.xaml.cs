@@ -55,15 +55,12 @@ namespace diamonds
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
-            int count = 10;
+            int count = 20;
             R = new Random();
             int tmp = R.Next(50000);
-            adc.Start(tmp, tmp + count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));
-          //  NeiroDiamonds.Medium();
-       //     NeiroDiamonds.WriteW();
-         //   NeiroDiamonds.ReadW();
-          //  adc.Start(0, count, int.Parse(textBox1.Text), 1, false, decimal.Parse(textBox2.Text));
-         //   NeiroDiamonds.Medium();
+            adc.Start(tmp, tmp + count, int.Parse(textBox1.Text), 1, true, decimal.Parse(textBox2.Text));     
+            NeiroDiamonds.WriteW();
+            adc.Start(tmp, tmp + count, int.Parse(textBox1.Text), 1, false, decimal.Parse(textBox2.Text));
             NeiroDiamonds.WriteW();
             stopwatch.Stop();
             textBlock.Text = stopwatch.ElapsedTicks.ToString();
@@ -115,7 +112,7 @@ namespace diamonds
                 x[i] = decimal.Parse(textBox6.Text); i++;
                 x[i] = decimal.Parse(textBox7.Text); i++;
                 x[i] = decimal.Parse(textBox8.Text); i++;
-
+                NeiroDiamonds.ReadW("W1true.csv", "W2true.csv");
                 decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2) / 100 - 155;
 
                 label1.Content = Math.Round(Out, 3).ToString();
