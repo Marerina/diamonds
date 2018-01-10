@@ -112,7 +112,7 @@ namespace diamonds
                 x[i] = decimal.Parse(textBox6.Text); i++;
                 x[i] = decimal.Parse(textBox7.Text); i++;
                 x[i] = decimal.Parse(textBox8.Text); i++;
-               // NeiroDiamonds.ReadW("W1true.csv", "W2true.csv");
+                NeiroDiamonds.ReadW("W1true.csv", "W2true.csv");
                 decimal Out = NeiroDiamonds.StraightPass(x, NeiroDiamonds.W1, NeiroDiamonds.W2) / 100 - 155;
 
                 label1.Content = Math.Round(Out, 3).ToString();
